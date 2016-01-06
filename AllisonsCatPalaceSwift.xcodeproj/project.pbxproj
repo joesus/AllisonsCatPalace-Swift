@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274AAED11C3D8FDB00BC63F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274AAED01C3D8FDB00BC63F2 /* Main.storyboard */; };
 		277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D8E1C3B1BC10091759E /* AppDelegate.swift */; };
 		277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D901C3B1BC10091759E /* MasterViewController.swift */; };
 		277B7D931C3B1BC10091759E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D921C3B1BC10091759E /* DetailViewController.swift */; };
-		277B7D961C3B1BC10091759E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277B7D941C3B1BC10091759E /* Main.storyboard */; };
 		277B7D981C3B1BC10091759E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 277B7D971C3B1BC10091759E /* Assets.xcassets */; };
 		277B7D9B1C3B1BC10091759E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */; };
+		27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A15C1C3C850300AE878F /* Kitten.swift */; };
+		27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */; };
+		AF90D86267EC99F03691CC6D /* Pods_AllisonsCatPalaceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BC48C3F3E5054932009BAA /* Pods-AllisonsCatPalaceSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		274AAED01C3D8FDB00BC63F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		277B7D8B1C3B1BC10091759E /* AllisonsCatPalaceSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllisonsCatPalaceSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277B7D8E1C3B1BC10091759E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		277B7D901C3B1BC10091759E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		277B7D921C3B1BC10091759E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		277B7D951C3B1BC10091759E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		277B7D971C3B1BC10091759E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		277B7D9A1C3B1BC10091759E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		277B7D9C1C3B1BC10091759E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27A0A15C1C3C850300AE878F /* Kitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitten.swift; sourceTree = "<group>"; };
+		27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllisonsCatPalaceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F38FBA70FFFC213994F3DC /* Pods-AllisonsCatPalaceSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF90D86267EC99F03691CC6D /* Pods_AllisonsCatPalaceSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				277B7D8D1C3B1BC10091759E /* AllisonsCatPalaceSwift */,
 				277B7D8C1C3B1BC10091759E /* Products */,
+				C282273B8F3E461CD423DDDA /* Pods */,
+				42DD2023BB1385C0BF3F0CA8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,12 +70,31 @@
 				277B7D8E1C3B1BC10091759E /* AppDelegate.swift */,
 				277B7D901C3B1BC10091759E /* MasterViewController.swift */,
 				277B7D921C3B1BC10091759E /* DetailViewController.swift */,
-				277B7D941C3B1BC10091759E /* Main.storyboard */,
 				277B7D971C3B1BC10091759E /* Assets.xcassets */,
 				277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */,
 				277B7D9C1C3B1BC10091759E /* Info.plist */,
+				27A0A15C1C3C850300AE878F /* Kitten.swift */,
+				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
+				274AAED01C3D8FDB00BC63F2 /* Main.storyboard */,
 			);
 			path = AllisonsCatPalaceSwift;
+			sourceTree = "<group>";
+		};
+		42DD2023BB1385C0BF3F0CA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C282273B8F3E461CD423DDDA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04BC48C3F3E5054932009BAA /* Pods-AllisonsCatPalaceSwift.debug.xcconfig */,
+				49F38FBA70FFFC213994F3DC /* Pods-AllisonsCatPalaceSwift.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 277B7D9F1C3B1BC10091759E /* Build configuration list for PBXNativeTarget "AllisonsCatPalaceSwift" */;
 			buildPhases = (
+				BA0E2C2D427F6483ABEC3516 /* Check Pods Manifest.lock */,
 				277B7D871C3B1BC10091759E /* Sources */,
 				277B7D881C3B1BC10091759E /* Frameworks */,
 				277B7D891C3B1BC10091759E /* Resources */,
+				BD2008AB87CE0D8699E9AA03 /* Embed Pods Frameworks */,
+				900012FD8DDE64AA02CF09B6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +132,7 @@
 				TargetAttributes = {
 					277B7D8A1C3B1BC10091759E = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 4H9T3SF8CS;
 					};
 				};
 			};
@@ -127,34 +161,76 @@
 			files = (
 				277B7D9B1C3B1BC10091759E /* LaunchScreen.storyboard in Resources */,
 				277B7D981C3B1BC10091759E /* Assets.xcassets in Resources */,
-				277B7D961C3B1BC10091759E /* Main.storyboard in Resources */,
+				274AAED11C3D8FDB00BC63F2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		900012FD8DDE64AA02CF09B6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA0E2C2D427F6483ABEC3516 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD2008AB87CE0D8699E9AA03 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		277B7D871C3B1BC10091759E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */,
 				277B7D931C3B1BC10091759E /* DetailViewController.swift in Sources */,
 				277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */,
 				277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */,
+				27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		277B7D941C3B1BC10091759E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				277B7D951C3B1BC10091759E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -202,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -240,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -249,22 +325,26 @@
 		};
 		277B7DA01C3B1BC10091759E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04BC48C3F3E5054932009BAA /* Pods-AllisonsCatPalaceSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AllisonsCatPalaceSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = AllisonsCatPalaceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		277B7DA11C3B1BC10091759E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49F38FBA70FFFC213994F3DC /* Pods-AllisonsCatPalaceSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AllisonsCatPalaceSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = AllisonsCatPalaceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -288,6 +368,7 @@
 				277B7DA11C3B1BC10091759E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,37 +9,38 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    var detailItem: AnyObject? {
-        didSet {
-            // Update the view.
-            self.configureView()
-        }
-    }
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
-    }
-
+    var kitten: Kitten?
+    var kittenImage: UIImage?
+    var editKittenCompletion: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func configureView() {
+        // Update the user interface for the detail item.
+        if let kitten = self.kitten {
+            imageView.image = kittenImage
+            nameLabel.text = kitten.name
+            detailDescriptionLabel.text = kitten.greeting
+        }
     }
-
-
+    
+    override func previewActionItems() -> [UIPreviewActionItem] {
+        let editAction = UIPreviewAction(title: "Edit", style: .Default) { (action: UIPreviewAction, vc: UIViewController) -> Void in
+            let detailVC = vc as! DetailViewController
+            detailVC.editKittenCompletion?()
+        }
+        
+        let deleteAction = UIPreviewAction(title: "Delete", style: .Destructive) { (action: UIPreviewAction, vc: UIViewController) -> Void in
+            
+        }
+        return [editAction, deleteAction]
+    }
 }
 

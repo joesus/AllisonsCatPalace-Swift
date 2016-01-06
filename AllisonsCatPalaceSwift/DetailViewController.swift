@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     var kitten: Kitten?
     var kittenImage: UIImage?
     var editKittenCompletion: (() -> Void)?
+    var deleteKittenCompletion: ((Kitten) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,8 @@ class DetailViewController: UIViewController {
         }
         
         let deleteAction = UIPreviewAction(title: "Delete", style: .Destructive) { (action: UIPreviewAction, vc: UIViewController) -> Void in
-            
+            let detailVC = vc as! DetailViewController
+            detailVC.deleteKittenCompletion?(self.kitten!)
         }
         return [editAction, deleteAction]
     }

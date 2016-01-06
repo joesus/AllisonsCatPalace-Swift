@@ -12,7 +12,7 @@ import Firebase
 let FirebaseUrl = "https://catpalace.firebaseio.com/"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     override init() {

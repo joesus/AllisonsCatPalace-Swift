@@ -16,6 +16,8 @@ struct Kitten {
     let about: String!
     let greeting: String!
     let pictureUrl: String!
+    var age: Int!
+    var cutenessLevel: Int!
     let ref: Firebase?
     
     // Initialize from arbitrary data
@@ -33,15 +35,19 @@ struct Kitten {
         about = snapshot.value["about"] as! String
         greeting = snapshot.value["greeting"] as! String
         pictureUrl = snapshot.value["picture"] as! String
+        age = snapshot.value["age"] as! Int
+        cutenessLevel = snapshot.value["cutenesslevel"] as! Int
         ref = snapshot.ref
     }
     
-    func toAnyObject() -> AnyObject {
+    func toAnyObject() -> [String: AnyObject] {
         return [
             "name": name,
             "about": about,
             "greeting": greeting,
-            "pictureUrl": pictureUrl
+            "pictureUrl": pictureUrl,
+            "age": age,
+            "cutenessLevel": cutenessLevel,
         ]
     }
     

@@ -11,9 +11,12 @@ import Firebase
 
 class EditTableViewController: UITableViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var greetingField: UITextField!
+    @IBOutlet weak var aboutField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var ageField: UITextField!
+    @IBOutlet weak var cutenessLevel: UISlider!
+    @IBOutlet weak var applyButton: UIButton!
     
     var kitten: Kitten?
     var kittenImage: UIImage?
@@ -22,7 +25,7 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.configureView()
         
-        greetingField.delegate = self
+        aboutField.delegate = self
         nameField.delegate = self
     }
     
@@ -31,33 +34,57 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
         if let kitten = self.kitten {
             imageView.image = kittenImage
             nameField.text = kitten.name
-            greetingField.text = kitten.greeting
+            aboutField.text = kitten.about
+            ageField.text = String(kitten.age)
+            cutenessLevel.value = Float(kitten.cutenessLevel)
         }
+        addDoneButtonToNumberPad()
     }
     
     @IBAction func applyChanges(sender: AnyObject) {
-        kitten?.ref?.updateChildValues([
+        
+        let kittenData: [NSObject: AnyObject] = [
             "name": self.nameField.text!,
-            "greeting": self.greetingField.text!
-            ], withCompletionBlock: { (error, firebase) -> Void in
+            "greeting": "Hello, my name is \(self.nameField.text!)",
+            "cutenesslevel": Int(self.cutenessLevel.value),
+            "age": Int(self.ageField.text!)!,
+        ]
+        
+        kitten?.ref?.updateChildValues(kittenData, withCompletionBlock: { (error, firebase) -> Void in
                 self.navigationController?.popViewControllerAnimated(true)
         })
     }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField == self.nameField {
-            self.greetingField.text = "Hello, my name is \(textField.text!)"
-        }
+
+    func addDoneButtonToNumberPad() {
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self.ageField, action: "resignFirstResponder")
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))
+        toolbar.items = [spaceItem, barButtonItem]
+        ageField.inputAccessoryView = toolbar
     }
+    
+    // MARK: TextField Delegate Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.nameField {
-            self.greetingField.becomeFirstResponder()
+            self.aboutField.becomeFirstResponder()
         }
-        if textField == self.greetingField {
-            self.greetingField.resignFirstResponder()
+        if textField == self.aboutField {
+            self.ageField.becomeFirstResponder()
         }
-        
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.ageField {
+            let text = NSString(string: textField.text!).stringByReplacingCharactersInRange(range, withString: string)
+            if let _ = Int(text) {
+                self.applyButton.enabled = true
+            } else {
+                self.applyButton.enabled = false
+            }
+        }
         return true
     }
 }

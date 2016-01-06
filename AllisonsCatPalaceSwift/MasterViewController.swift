@@ -112,6 +112,8 @@ class MasterViewController: UITableViewController {
         cell.textLabel!.text = kitten.name
         cell.detailTextLabel!.text = kitten.about
 
+        self.registerForPreviewingWithDelegate(self, sourceView: self.view)
+
         return cell
     }
     
@@ -139,11 +141,32 @@ class MasterViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            kittens.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            deleteKittenWithWarning(self.kittens[indexPath.row])
+            self.tableView.reloadData()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+    
+    func deleteKittenWithWarning(kitten: Kitten) {
+        let alertController = UIAlertController(title: "DANGER", message: "This action is permanent. The kitten will cease to exist. Are you certain you want to proceed?", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "Yes. Delete the Kitten", style: .Destructive) {
+            UIAlertAction in
+            kitten.ref?.removeValue()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) {
+            UIAlertAction in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
     }
 }
 
@@ -173,6 +196,8 @@ extension MasterViewController: UIViewControllerPreviewingDelegate {
             editVC.kittenImage = self.kittenImages[indexPath.row]
             self.showViewController(editVC, sender: nil)
         }
+        
+        detailVC.deleteKittenCompletion = deleteKittenWithWarning
         
         return detailVC
     }

@@ -38,30 +38,21 @@ struct Kitten {
     
     init(snapshot: FDataSnapshot) throws {
         key = snapshot.key
-        guard let guardedName = snapshot.value["name"] else {
-            throw KittenError.InvalidData("No value for name key")
+        if let name = snapshot.value["name"],
+            about = snapshot.value["about"],
+            greeting = snapshot.value["greeting"],
+            pictureUrl = snapshot.value["picture"],
+            age = snapshot.value["age"],
+            cutenessLevel = snapshot.value["cutenesslevel"] {
+            self.name = name as! String
+            self.about = about as! String
+            self.greeting = greeting as! String
+            self.pictureUrl = pictureUrl as! String
+            self.age = age as! Int
+            self.cutenessLevel = cutenessLevel as! Int
+        } else {
+            throw KittenError.InvalidData("No value for required key")
         }
-        guard let guardedAbout = snapshot.value["about"] else {
-            throw KittenError.InvalidData("No value for about key")
-        }
-        guard let guardedGreeting = snapshot.value["greeting"] else {
-            throw KittenError.InvalidData("No value for greeting key")
-        }
-        guard let guardedPictureURL = snapshot.value["picture"] else {
-            throw KittenError.InvalidData("No value for picture key")
-        }
-        guard let guardedAge = snapshot.value["age"] else {
-            throw KittenError.InvalidData("No value for age key")
-        }
-        guard let guardedCutenessLevel = snapshot.value["cutenesslevel"] else {
-            throw KittenError.InvalidData("No value for cutenesslevel key")
-        }
-        name = guardedName as! String
-        about = guardedAbout as! String
-        greeting = guardedGreeting as! String
-        pictureUrl = guardedPictureURL as! String
-        age = guardedAge as! Int
-        cutenessLevel = guardedCutenessLevel as! Int
         ref = snapshot.ref
     }
     

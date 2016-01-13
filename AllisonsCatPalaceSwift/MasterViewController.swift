@@ -26,8 +26,12 @@ class MasterViewController: UITableViewController {
             
             var kittens = [Kitten]()
             for item in snapshot.children {
-                let kitten = Kitten(snapshot: item as! FDataSnapshot)
-                kittens.append(kitten)
+                do {
+                    let kitten = try Kitten(snapshot: item as! FDataSnapshot)
+                    kittens.append(kitten)
+                } catch let error{
+                    print(error)
+                }
             }
             self.kittens = kittens
 
@@ -54,9 +58,18 @@ class MasterViewController: UITableViewController {
     
     func insertNewObject(sender: AnyObject) {
         // TODO - open editVC with no data. Or maybe a default kitten image
+        let kitten = Kitten(name: "", about: "", greeting: "", age: 1, cutenessLevel: 5)
+        let editVC = storyboard?.instantiateViewControllerWithIdentifier("EditTableViewController") as! EditTableViewController
+        editVC.kitten = kitten
         
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        let tempImageView = UIImageView()
+        downloadImagesForImageView(tempImageView, link: kitten.pictureUrl, contentMode: .ScaleAspectFit) {
+            editVC.kittenImage = tempImageView.image
+            self.presentViewController(editVC, animated: true, completion: nil)
+        }
+
+//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     
     // MARK: - Segues

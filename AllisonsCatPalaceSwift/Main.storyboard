@@ -108,7 +108,13 @@
                             <constraint firstItem="uIp-7E-xY3" firstAttribute="centerX" secondItem="gNf-tI-lMG" secondAttribute="centerX" id="lry-vY-sTJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="d8E-5O-xg9"/>
+                    <navigationItem key="navigationItem" id="d8E-5O-xg9">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="yQH-8D-yyf">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="2id-Zi-nZO" id="JIY-Jq-BVX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="uIp-7E-xY3" id="1eu-3e-7sA"/>
                         <outlet property="imageView" destination="ngu-I7-coC" id="rVF-Vg-IDq"/>
@@ -297,6 +303,28 @@
                                             <constraints>
                                                 <constraint firstItem="2Uk-In-7aS" firstAttribute="top" secondItem="zTW-2F-6t0" secondAttribute="top" constant="7" id="7fi-52-skL"/>
                                                 <constraint firstItem="2Uk-In-7aS" firstAttribute="centerX" secondItem="zTW-2F-6t0" secondAttribute="centerX" id="dz3-0r-2hf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bKi-dj-6yM">
+                                        <rect key="frame" x="0.0" y="520" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bKi-dj-6yM" id="XOE-Vl-vet">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUT-sh-E7l">
+                                                    <rect key="frame" x="276" y="7" width="48" height="30"/>
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="applyChanges:" destination="18w-op-bNk" eventType="touchUpInside" id="MVA-C1-8jF"/>
+                                                        <action selector="cancelChanges:" destination="18w-op-bNk" eventType="touchUpInside" id="TdK-mT-Rk2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dUT-sh-E7l" firstAttribute="centerX" secondItem="XOE-Vl-vet" secondAttribute="centerX" id="HRP-Qx-Aa5"/>
+                                                <constraint firstItem="dUT-sh-E7l" firstAttribute="top" secondItem="XOE-Vl-vet" secondAttribute="top" constant="7" id="YTN-zh-bwx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

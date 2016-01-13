@@ -15,6 +15,7 @@
 		277B7D9B1C3B1BC10091759E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */; };
 		27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A15C1C3C850300AE878F /* Kitten.swift */; };
 		27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */; };
+		27ABEC981C46A69100C0F557 /* RangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABEC971C46A69100C0F557 /* RangeExtension.swift */; };
 		AF90D86267EC99F03691CC6D /* Pods_AllisonsCatPalaceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		277B7D9C1C3B1BC10091759E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A0A15C1C3C850300AE878F /* Kitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitten.swift; sourceTree = "<group>"; };
 		27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		27ABEC971C46A69100C0F557 /* RangeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeExtension.swift; sourceTree = "<group>"; };
 		2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllisonsCatPalaceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F38FBA70FFFC213994F3DC /* Pods-AllisonsCatPalaceSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				27A0A15C1C3C850300AE878F /* Kitten.swift */,
 				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
 				274AAED01C3D8FDB00BC63F2 /* Main.storyboard */,
+				27ABEC971C46A69100C0F557 /* RangeExtension.swift */,
 			);
 			path = AllisonsCatPalaceSwift;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */,
 				277B7D931C3B1BC10091759E /* DetailViewController.swift in Sources */,
 				277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */,
+				27ABEC981C46A69100C0F557 /* RangeExtension.swift in Sources */,
 				277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */,
 				27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */,
 			);

@@ -32,7 +32,9 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
     func configureView() {
         // Update the user interface for the detail item.
         if let kitten = self.kitten {
-            imageView.image = kittenImage
+            if let image = kittenImage {
+                imageView.image = image
+            }
             nameField.text = kitten.name
             aboutField.text = kitten.about
             ageField.text = String(kitten.age)
@@ -43,17 +45,33 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func applyChanges(sender: AnyObject) {
         
-        let kittenData: [NSObject: AnyObject] = [
+        var kittenData: [NSObject: AnyObject] = [
             "name": self.nameField.text!,
             "greeting": "Hello, my name is \(self.nameField.text!)",
+            "about": self.aboutField.text!,
             "cutenesslevel": Int(self.cutenessLevel.value),
             "age": Int(self.ageField.text!)!,
         ]
         
-        kitten?.ref?.updateChildValues(kittenData, withCompletionBlock: { (error, firebase) -> Void in
-                self.navigationController?.popViewControllerAnimated(true)
-        })
+        if let ref = kitten?.ref {
+            ref.updateChildValues(kittenData, withCompletionBlock: { (error, firebase) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        } else {
+            kittenData["picture"] = kitten?.pictureUrl
+            // sets the base ref. This should probably be global
+            let ref = Firebase(url: "https://catpalace.firebaseio.com/")
+            // maybe a better way to do this than autoID
+            let newKittenRef = ref.childByAutoId()
+            newKittenRef.setValue(kittenData)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
+    
+    @IBAction func cancelChanges(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
     func addDoneButtonToNumberPad() {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self.ageField, action: "resignFirstResponder")

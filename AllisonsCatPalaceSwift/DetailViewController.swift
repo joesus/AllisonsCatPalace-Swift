@@ -32,6 +32,14 @@ class DetailViewController: UIViewController {
         }
     }
     
+    @IBAction func editButtonPressed(sender: UIBarButtonItem) {
+        let editVC = storyboard?.instantiateViewControllerWithIdentifier("EditTableViewController") as! EditTableViewController
+        editVC.kitten = kitten
+        editVC.kittenImage = kittenImage
+        presentViewController(editVC, animated: true, completion: nil)
+    }
+    
+    
     override func previewActionItems() -> [UIPreviewActionItem] {
         let editAction = UIPreviewAction(title: "Edit", style: .Default) { (action: UIPreviewAction, vc: UIViewController) -> Void in
             let detailVC = vc as! DetailViewController

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2745B2DB1CA9A3EA005E7252 /* MasterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745B2DA1CA9A3EA005E7252 /* MasterViewControllerTests.swift */; };
 		274AAED11C3D8FDB00BC63F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274AAED01C3D8FDB00BC63F2 /* Main.storyboard */; };
 		277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D8E1C3B1BC10091759E /* AppDelegate.swift */; };
 		277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D901C3B1BC10091759E /* MasterViewController.swift */; };
@@ -15,12 +16,35 @@
 		277B7D9B1C3B1BC10091759E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */; };
 		27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A15C1C3C850300AE878F /* Kitten.swift */; };
 		27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */; };
+		27A85C2A1CAC725E004F2645 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27A85C291CAC725E004F2645 /* Info.plist */; };
 		27ABEC981C46A69100C0F557 /* RangeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ABEC971C46A69100C0F557 /* RangeExtension.swift */; };
+		27D09F321CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D09F311CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.swift */; };
+		27D5AF491CB07F240050F02C /* EditTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D5AF481CB07F240050F02C /* EditTableViewControllerTests.swift */; };
+		27D808E21CAEBA39006DAAE5 /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D808E11CAEBA39006DAAE5 /* DetailViewControllerTests.swift */; };
+		27D8E7851CAC70FB002DF3E2 /* AllisonsCatPalaceSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D8E7841CAC70FB002DF3E2 /* AllisonsCatPalaceSwiftUITests.swift */; };
 		AF90D86267EC99F03691CC6D /* Pods_AllisonsCatPalaceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		27D09F341CA8290300F75E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 277B7D831C3B1BC10091759E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277B7D8A1C3B1BC10091759E;
+			remoteInfo = AllisonsCatPalaceSwift;
+		};
+		27D09F421CA8290C00F75E9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 277B7D831C3B1BC10091759E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277B7D8A1C3B1BC10091759E;
+			remoteInfo = AllisonsCatPalaceSwift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		04BC48C3F3E5054932009BAA /* Pods-AllisonsCatPalaceSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		2745B2DA1CA9A3EA005E7252 /* MasterViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewControllerTests.swift; sourceTree = "<group>"; };
 		274AAED01C3D8FDB00BC63F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		277B7D8B1C3B1BC10091759E /* AllisonsCatPalaceSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllisonsCatPalaceSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277B7D8E1C3B1BC10091759E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +55,15 @@
 		277B7D9C1C3B1BC10091759E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A0A15C1C3C850300AE878F /* Kitten.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitten.swift; sourceTree = "<group>"; };
 		27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		27A85C291CAC725E004F2645 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AllisonsCatPalaceSwiftUITests/Info.plist; sourceTree = "<group>"; };
 		27ABEC971C46A69100C0F557 /* RangeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeExtension.swift; sourceTree = "<group>"; };
+		27D09F2F1CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllisonsCatPalaceSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D09F311CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllisonsCatPalaceSwiftTests.swift; sourceTree = "<group>"; };
+		27D09F331CA8290300F75E9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27D09F3D1CA8290C00F75E9A /* AllisonsCatPalaceSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllisonsCatPalaceSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D5AF481CB07F240050F02C /* EditTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewControllerTests.swift; sourceTree = "<group>"; };
+		27D808E11CAEBA39006DAAE5 /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
+		27D8E7841CAC70FB002DF3E2 /* AllisonsCatPalaceSwiftUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllisonsCatPalaceSwiftUITests.swift; sourceTree = "<group>"; };
 		2EF0197F59E9ED45A237ED94 /* Pods_AllisonsCatPalaceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AllisonsCatPalaceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F38FBA70FFFC213994F3DC /* Pods-AllisonsCatPalaceSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +77,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27D09F2C1CA8290300F75E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D09F3A1CA8290C00F75E9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -52,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				277B7D8D1C3B1BC10091759E /* AllisonsCatPalaceSwift */,
+				27D09F301CA8290300F75E9A /* AllisonsCatPalaceSwiftTests */,
+				27D8E7861CAC7126002DF3E2 /* AllisonsCatPalaceSwiftUITests */,
 				277B7D8C1C3B1BC10091759E /* Products */,
 				C282273B8F3E461CD423DDDA /* Pods */,
 				42DD2023BB1385C0BF3F0CA8 /* Frameworks */,
@@ -62,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				277B7D8B1C3B1BC10091759E /* AllisonsCatPalaceSwift.app */,
+				27D09F2F1CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.xctest */,
+				27D09F3D1CA8290C00F75E9A /* AllisonsCatPalaceSwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -72,15 +122,36 @@
 				277B7D8E1C3B1BC10091759E /* AppDelegate.swift */,
 				277B7D901C3B1BC10091759E /* MasterViewController.swift */,
 				277B7D921C3B1BC10091759E /* DetailViewController.swift */,
+				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
 				277B7D971C3B1BC10091759E /* Assets.xcassets */,
 				277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */,
 				277B7D9C1C3B1BC10091759E /* Info.plist */,
 				27A0A15C1C3C850300AE878F /* Kitten.swift */,
-				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
 				274AAED01C3D8FDB00BC63F2 /* Main.storyboard */,
 				27ABEC971C46A69100C0F557 /* RangeExtension.swift */,
 			);
 			path = AllisonsCatPalaceSwift;
+			sourceTree = "<group>";
+		};
+		27D09F301CA8290300F75E9A /* AllisonsCatPalaceSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				27D09F311CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.swift */,
+				27D09F331CA8290300F75E9A /* Info.plist */,
+				2745B2DA1CA9A3EA005E7252 /* MasterViewControllerTests.swift */,
+				27D808E11CAEBA39006DAAE5 /* DetailViewControllerTests.swift */,
+				27D5AF481CB07F240050F02C /* EditTableViewControllerTests.swift */,
+			);
+			path = AllisonsCatPalaceSwiftTests;
+			sourceTree = "<group>";
+		};
+		27D8E7861CAC7126002DF3E2 /* AllisonsCatPalaceSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				27D8E7841CAC70FB002DF3E2 /* AllisonsCatPalaceSwiftUITests.swift */,
+				27A85C291CAC725E004F2645 /* Info.plist */,
+			);
+			name = AllisonsCatPalaceSwiftUITests;
 			sourceTree = "<group>";
 		};
 		42DD2023BB1385C0BF3F0CA8 /* Frameworks */ = {
@@ -123,19 +194,63 @@
 			productReference = 277B7D8B1C3B1BC10091759E /* AllisonsCatPalaceSwift.app */;
 			productType = "com.apple.product-type.application";
 		};
+		27D09F2E1CA8290300F75E9A /* AllisonsCatPalaceSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27D09F381CA8290300F75E9A /* Build configuration list for PBXNativeTarget "AllisonsCatPalaceSwiftTests" */;
+			buildPhases = (
+				27D09F2B1CA8290300F75E9A /* Sources */,
+				27D09F2C1CA8290300F75E9A /* Frameworks */,
+				27D09F2D1CA8290300F75E9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27D09F351CA8290300F75E9A /* PBXTargetDependency */,
+			);
+			name = AllisonsCatPalaceSwiftTests;
+			productName = AllisonsCatPalaceSwiftTests;
+			productReference = 27D09F2F1CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		27D09F3C1CA8290C00F75E9A /* AllisonsCatPalaceSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27D09F441CA8290C00F75E9A /* Build configuration list for PBXNativeTarget "AllisonsCatPalaceSwiftUITests" */;
+			buildPhases = (
+				27D09F391CA8290C00F75E9A /* Sources */,
+				27D09F3A1CA8290C00F75E9A /* Frameworks */,
+				27D09F3B1CA8290C00F75E9A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27D09F431CA8290C00F75E9A /* PBXTargetDependency */,
+			);
+			name = AllisonsCatPalaceSwiftUITests;
+			productName = AllisonsCatPalaceSwiftUITests;
+			productReference = 27D09F3D1CA8290C00F75E9A /* AllisonsCatPalaceSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		277B7D831C3B1BC10091759E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Joe Susnick Co.";
 				TargetAttributes = {
 					277B7D8A1C3B1BC10091759E = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 4H9T3SF8CS;
+					};
+					27D09F2E1CA8290300F75E9A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 277B7D8A1C3B1BC10091759E;
+					};
+					27D09F3C1CA8290C00F75E9A = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 277B7D8A1C3B1BC10091759E;
 					};
 				};
 			};
@@ -153,6 +268,8 @@
 			projectRoot = "";
 			targets = (
 				277B7D8A1C3B1BC10091759E /* AllisonsCatPalaceSwift */,
+				27D09F2E1CA8290300F75E9A /* AllisonsCatPalaceSwiftTests */,
+				27D09F3C1CA8290C00F75E9A /* AllisonsCatPalaceSwiftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -162,9 +279,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A85C2A1CAC725E004F2645 /* Info.plist in Resources */,
 				277B7D9B1C3B1BC10091759E /* LaunchScreen.storyboard in Resources */,
 				277B7D981C3B1BC10091759E /* Assets.xcassets in Resources */,
 				274AAED11C3D8FDB00BC63F2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D09F2D1CA8290300F75E9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D09F3B1CA8290C00F75E9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +364,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27D09F2B1CA8290300F75E9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2745B2DB1CA9A3EA005E7252 /* MasterViewControllerTests.swift in Sources */,
+				27D5AF491CB07F240050F02C /* EditTableViewControllerTests.swift in Sources */,
+				27D09F321CA8290300F75E9A /* AllisonsCatPalaceSwiftTests.swift in Sources */,
+				27D808E21CAEBA39006DAAE5 /* DetailViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D09F391CA8290C00F75E9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27D8E7851CAC70FB002DF3E2 /* AllisonsCatPalaceSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27D09F351CA8290300F75E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 277B7D8A1C3B1BC10091759E /* AllisonsCatPalaceSwift */;
+			targetProxy = 27D09F341CA8290300F75E9A /* PBXContainerItemProxy */;
+		};
+		27D09F431CA8290C00F75E9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 277B7D8A1C3B1BC10091759E /* AllisonsCatPalaceSwift */;
+			targetProxy = 27D09F421CA8290C00F75E9A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */ = {
@@ -282,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -320,7 +484,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -334,6 +498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AllisonsCatPalaceSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AllisonsCatPalaceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -347,9 +512,63 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AllisonsCatPalaceSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AllisonsCatPalaceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		27D09F361CA8290300F75E9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AllisonsCatPalaceSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AllisonsCatPalaceSwift.app/AllisonsCatPalaceSwift";
+			};
+			name = Debug;
+		};
+		27D09F371CA8290300F75E9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AllisonsCatPalaceSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AllisonsCatPalaceSwift.app/AllisonsCatPalaceSwift";
+			};
+			name = Release;
+		};
+		27D09F451CA8290C00F75E9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = AllisonsCatPalaceSwiftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AllisonsCatPalaceSwiftTests/AllisonsCatPalaceSwiftUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = AllisonsCatPalaceSwift;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		27D09F461CA8290C00F75E9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = AllisonsCatPalaceSwiftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = joesus.AllisonsCatPalaceSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AllisonsCatPalaceSwiftTests/AllisonsCatPalaceSwiftUITests-Bridging-Header.h";
+				TEST_TARGET_NAME = AllisonsCatPalaceSwift;
+				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -370,6 +589,24 @@
 			buildConfigurations = (
 				277B7DA01C3B1BC10091759E /* Debug */,
 				277B7DA11C3B1BC10091759E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27D09F381CA8290300F75E9A /* Build configuration list for PBXNativeTarget "AllisonsCatPalaceSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27D09F361CA8290300F75E9A /* Debug */,
+				27D09F371CA8290300F75E9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27D09F441CA8290C00F75E9A /* Build configuration list for PBXNativeTarget "AllisonsCatPalaceSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27D09F451CA8290C00F75E9A /* Debug */,
+				27D09F461CA8290C00F75E9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

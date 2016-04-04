@@ -14,23 +14,39 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var kittens = [Kitten]()
     var kittenImages = [Int: UIImage]()
-    let ref = Firebase(url: "https://catpalace.firebaseio.com/")
+    
+    // not sure if need all this fiddle faddle
+    var deleteKittenAlert: UIAlertController?
+    var alertAction = UIAlertAction.self
+    var actionString: String?
+    
+    var ref: Firebase = Firebase(url: "https://catpalace.firebaseio.com/")
+    
+    convenience init(ref: String) {
+        self.init()
+        self.ref = Firebase(url: ref)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.registerForPreviewingWithDelegate(self, sourceView: self.view)
 
         // Load all the datas
+        loadKittenData() {}
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+    }
+    
+    func loadKittenData(completionHandler: (()->())?) {
         ref.observeEventType(.Value, withBlock: { snapshot in
-            
             var kittens = [Kitten]()
             for item in snapshot.children {
                 do {
                     let kitten = try Kitten(snapshot: item as! FDataSnapshot)
                     kittens.append(kitten)
                 } catch let error{
-                    print(error)
+                    self.actionString = "\(error)"
                 }
             }
             self.kittens = kittens
@@ -39,53 +55,32 @@ class MasterViewController: UITableViewController {
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
                 self.registerForPreviewingWithDelegate(self, sourceView: self.view)
+                completionHandler?()
             }
             
             }, withCancelBlock: { error in
                 print(error.description)
         })
-        
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
-    }
-    
-    func insertNewObject(sender: AnyObject) {
-        // TODO - open editVC with no data. Or maybe a default kitten image
-        let kitten = Kitten(name: "", about: "", greeting: "", age: 1, cutenessLevel: 5)
-        let editVC = storyboard?.instantiateViewControllerWithIdentifier("EditTableViewController") as! EditTableViewController
-        editVC.kitten = kitten
-        
-        let tempImageView = UIImageView()
-        downloadImagesForImageView(tempImageView, link: kitten.pictureUrl, contentMode: .ScaleAspectFit) {
-            editVC.kittenImage = tempImageView.image
-            self.presentViewController(editVC, animated: true, completion: nil)
-        }
-
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     
     // MARK: - Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let kitten = kittens[indexPath.row]
+            if let row = (sender as? UITableViewCell)?.tag {
+                let kitten = kittens[row]
                 let detailVC = (segue.destinationViewController as! DetailViewController)
                 
-                    detailVC.kittenImage = kittenImages[indexPath.row]
-                    detailVC.kitten = kitten
+                detailVC.kittenImage = kittenImages[row]
+                detailVC.kitten = kitten
                 
-                    detailVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                    detailVC.navigationItem.leftItemsSupplementBackButton = true
+                detailVC.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                detailVC.navigationItem.leftItemsSupplementBackButton = true
             }
+        } else if segue.identifier == "showEditVC" {
+            let kitten = Kitten(name: "", about: "", greeting: "", age: 1, cutenessLevel: 5)
+            let editVC = segue.destinationViewController as! EditTableViewController
+            editVC.kitten = kitten
         }
     }
     
@@ -101,6 +96,7 @@ class MasterViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        cell.tag = indexPath.row
         
         let kitten = kittens[indexPath.row]
         
@@ -108,7 +104,7 @@ class MasterViewController: UITableViewController {
         if let cachedImage = kittenImages[indexPath.row] {
             kittenImageView.image = cachedImage
         } else {
-            downloadImagesForImageView(kittenImageView, link: kitten.pictureUrl, contentMode: .ScaleAspectFit) {
+            downloadImagesForImageView(kittenImageView, link: kitten.pictureUrl!, contentMode: .ScaleAspectFit) {
                 self.kittenImages[indexPath.row] = kittenImageView.image
             }
         }
@@ -131,9 +127,7 @@ class MasterViewController: UITableViewController {
     }
     
     func downloadImagesForImageView(imageView: UIImageView, link:String, contentMode mode: UIViewContentMode, onCompletion: (() -> ())) {
-        guard
-            let url = NSURL(string: link)
-            else {return}
+        guard let url = NSURL(string: link) else { return }
         imageView.contentMode = mode
         NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, _, error) -> Void in
             guard
@@ -156,26 +150,28 @@ class MasterViewController: UITableViewController {
         if editingStyle == .Delete {
             deleteKittenWithWarning(self.kittens[indexPath.row])
             self.tableView.reloadData()
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
+        } 
     }
     
     func deleteKittenWithWarning(kitten: Kitten) {
         let alertController = UIAlertController(title: "DANGER", message: "This action is permanent. The kitten will cease to exist. Are you certain you want to proceed?", preferredStyle: .Alert)
         
-        let okAction = UIAlertAction(title: "Yes. Delete the Kitten", style: .Destructive) {
+        let okAction = alertAction.init(title: "Yes. Delete the Kitten", style: .Destructive) {
             UIAlertAction in
+            self.actionString = "Yes"
             kitten.ref?.removeValue()
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) {
+        let cancelAction = alertAction.init(title: "Cancel", style: .Cancel) {
             UIAlertAction in
+            self.actionString = "Cancel"
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)
+        
+        self.deleteKittenAlert = alertController // for testing
         
         dispatch_async(dispatch_get_main_queue(), {
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -190,12 +186,10 @@ extension MasterViewController: UIViewControllerPreviewingDelegate {
     }
     
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        print(" something ")
         guard let indexPath = tableView?.indexPathForRowAtPoint(location) else { return nil }
         guard let cell = tableView?.cellForRowAtIndexPath(indexPath) else { return nil }
-
         guard let detailVC = storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as? DetailViewController else { return nil }
-        print("guards done")
+        
         detailVC.preferredContentSize = CGSize(width: 0.0, height: 0.0)
         previewingContext.sourceRect = cell.frame
         
@@ -208,6 +202,7 @@ extension MasterViewController: UIViewControllerPreviewingDelegate {
             editVC.kitten = kitten
             editVC.kittenImage = self.kittenImages[indexPath.row]
             self.showViewController(editVC, sender: nil)
+            return editVC // only for getting a reference for testing. Bad practice?
         }
         
         detailVC.deleteKittenCompletion = deleteKittenWithWarning

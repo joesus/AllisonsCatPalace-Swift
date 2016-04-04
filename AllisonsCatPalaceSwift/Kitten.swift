@@ -15,17 +15,17 @@ enum KittenError: ErrorType {
 
 struct Kitten {
     
-    let key: String!
-    let name: String!
-    let about: String!
-    let greeting: String!
+    let key: String
+    let name: String?
+    let about: String?
+    let greeting: String?
     let pictureUrl: String!
-    var age: Int!
-    var cutenessLevel: Int!
-    let ref: Firebase?
+    var age: Int?
+    var cutenessLevel: Int?
+    var ref: Firebase?
     
     // Initialize from arbitrary data
-    init(name: String, about: String, greeting: String, age: Int, cutenessLevel: Int, key: String = "") {
+    init(name: String?, about: String?, greeting: String?, age: Int?, cutenessLevel: Int?, key: String = "") {
         self.key = key
         self.name = name
         self.about = about
@@ -38,33 +38,23 @@ struct Kitten {
     
     init(snapshot: FDataSnapshot) throws {
         key = snapshot.key
-        if let name = snapshot.value["name"],
-            about = snapshot.value["about"],
-            greeting = snapshot.value["greeting"],
-            pictureUrl = snapshot.value["picture"],
-            age = snapshot.value["age"],
-            cutenessLevel = snapshot.value["cutenesslevel"] {
-            self.name = name as! String
-            self.about = about as! String
-            self.greeting = greeting as! String
-            self.pictureUrl = pictureUrl as! String
-            self.age = age as! Int
-            self.cutenessLevel = cutenessLevel as! Int
+        let error = KittenError.InvalidData("No value for key in snapshot")
+        if snapshot.hasChild("name") {
+            let cutenessLevel = snapshot.value["cutenesslevel"]
+            guard let name = snapshot.value["name"] where snapshot.hasChild("name") else { throw error }
+            guard let about = snapshot.value["about"] where snapshot.hasChild("about") else { throw error }
+            guard let greeting = snapshot.value["greeting"] where snapshot.hasChild("greeting") else { throw error }
+            guard let pictureUrl = snapshot.value["picture"] where snapshot.hasChild("picture") else { throw error }
+            guard let age = snapshot.value["age"] where snapshot.hasChild("age") else { throw error }
+            self.name = name as? String
+            self.about = about as? String
+            self.greeting = greeting as? String
+            self.pictureUrl = pictureUrl as? String
+            self.age = age as? Int
+            self.cutenessLevel = cutenessLevel as? Int
         } else {
             throw KittenError.InvalidData("No value for required key")
         }
         ref = snapshot.ref
     }
-    
-    func toAnyObject() -> [String: AnyObject] {
-        return [
-            "name": name,
-            "about": about,
-            "greeting": greeting,
-            "pictureUrl": pictureUrl,
-            "age": age,
-            "cutenessLevel": cutenessLevel,
-        ]
-    }
-    
 }

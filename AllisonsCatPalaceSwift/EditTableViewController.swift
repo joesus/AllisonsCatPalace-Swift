@@ -25,8 +25,30 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.configureView()
         
+        applyButton.enabled = false
         aboutField.delegate = self
         nameField.delegate = self
+        
+        let tempImageView = UIImageView()
+        downloadImagesForImageView(tempImageView, link: (kitten?.pictureUrl!)!, contentMode: .ScaleAspectFit) {
+            self.kittenImage = tempImageView.image
+            self.configureView()
+        }
+    }
+    
+    func downloadImagesForImageView(imageView: UIImageView, link:String, contentMode mode: UIViewContentMode, onCompletion: (() -> ())) {
+        guard let url = NSURL(string: link) else { return }
+        imageView.contentMode = mode
+        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data, _, error) -> Void in
+            guard
+                let data = data where error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                imageView.image = image
+                onCompletion()
+            }
+        }).resume()
     }
     
     func configureView() {
@@ -37,14 +59,13 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
             }
             nameField.text = kitten.name
             aboutField.text = kitten.about
-            ageField.text = String(kitten.age)
-            cutenessLevel.value = Float(kitten.cutenessLevel)
+            ageField.text = String(kitten.age!)
+            cutenessLevel.value = Float(kitten.cutenessLevel!)
         }
         addDoneButtonToNumberPad()
     }
     
     @IBAction func applyChanges(sender: AnyObject) {
-        
         var kittenData: [NSObject: AnyObject] = [
             "name": self.nameField.text!,
             "greeting": "Hello, my name is \(self.nameField.text!)",
@@ -55,7 +76,11 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
         
         if let ref = kitten?.ref {
             ref.updateChildValues(kittenData, withCompletionBlock: { (error, firebase) -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                if error != nil {
+                    print(error.debugDescription)
+                } else {
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
             })
         } else {
             kittenData["picture"] = kitten?.pictureUrl
@@ -64,15 +89,14 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
             // maybe a better way to do this than autoID
             let newKittenRef = ref.childByAutoId()
             newKittenRef.setValue(kittenData)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
     @IBAction func cancelChanges(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
-
     func addDoneButtonToNumberPad() {
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self.ageField, action: "resignFirstResponder")
         let spaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
@@ -83,7 +107,6 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     // MARK: TextField Delegate Methods
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.nameField {
             self.aboutField.becomeFirstResponder()

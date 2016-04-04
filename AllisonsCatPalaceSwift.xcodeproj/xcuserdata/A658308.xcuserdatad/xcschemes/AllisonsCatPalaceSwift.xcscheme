@@ -26,8 +26,29 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27D09F2E1CA8290300F75E9A"
+               BuildableName = "AllisonsCatPalaceSwiftTests.xctest"
+               BlueprintName = "AllisonsCatPalaceSwiftTests"
+               ReferencedContainer = "container:AllisonsCatPalaceSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27D09F3C1CA8290C00F75E9A"
+               BuildableName = "AllisonsCatPalaceSwiftUITests.xctest"
+               BlueprintName = "AllisonsCatPalaceSwiftUITests"
+               ReferencedContainer = "container:AllisonsCatPalaceSwift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

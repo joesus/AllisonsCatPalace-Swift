@@ -14,13 +14,7 @@ extension Range
         {
         get
         {
-            var offset = 0
-            
-            if (startIndex as! Int) < 0   // allow negative ranges
-            {
-                offset = abs(startIndex as! Int)
-            }
-            
+            let offset = 0
             let mini = UInt32(startIndex as! Int + offset)
             let maxi = UInt32(endIndex   as! Int + offset)
             

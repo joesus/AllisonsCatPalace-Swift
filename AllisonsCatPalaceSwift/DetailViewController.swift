@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import Firebase
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var cutenessLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     var kitten: Kitten?
     var kittenImage: UIImage?
-    var editKittenCompletion: (() -> Void)?
+    var editKittenCompletion: (() -> UIViewController)?
     var deleteKittenCompletion: ((Kitten) -> Void)?
+    var ref: Firebase = Firebase(url: "https://catpalace.firebaseio.com/")
+    var previewActions: [UIPreviewAction]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +34,38 @@ class DetailViewController: UIViewController {
             imageView.image = kittenImage
             nameLabel.text = kitten.name
             detailDescriptionLabel.text = kitten.greeting
+            if let age = kitten.age, cuteness = kitten.cutenessLevel {
+                ageLabel.text = "Age: \(age)"
+                cutenessLabel.text = "CutenessLevel: \(cuteness)"
+            }
         }
     }
     
-    @IBAction func editButtonPressed(sender: UIBarButtonItem) {
-        let editVC = storyboard?.instantiateViewControllerWithIdentifier("EditTableViewController") as! EditTableViewController
-        editVC.kitten = kitten
-        editVC.kittenImage = kittenImage
-        presentViewController(editVC, animated: true, completion: nil)
+    override func viewWillAppear(animated: Bool) {
+        loadKittenData() {
+            self.configureView()
+        }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEditVC" {
+            let editVC = segue.destinationViewController as! EditTableViewController
+            editVC.kitten = kitten
+            editVC.kittenImage = kittenImage
+        }
+    }
+    
+    func loadKittenData(completionHandler: (()->())?) {
+        print("load kitten hit")
+        ref.observeSingleEventOfType(.ChildChanged, withBlock: { snapshot in
+            do {
+                self.kitten = try Kitten(snapshot: snapshot as! FDataSnapshot)
+            } catch let error {
+                print(error)
+            }
+        })
+        completionHandler?()
+    }
     
     override func previewActionItems() -> [UIPreviewActionItem] {
         let editAction = UIPreviewAction(title: "Edit", style: .Default) { (action: UIPreviewAction, vc: UIViewController) -> Void in
@@ -50,7 +77,7 @@ class DetailViewController: UIViewController {
             let detailVC = vc as! DetailViewController
             detailVC.deleteKittenCompletion?(self.kitten!)
         }
+        self.previewActions = [editAction, deleteAction] // hacky test stuff
         return [editAction, deleteAction]
     }
 }
-

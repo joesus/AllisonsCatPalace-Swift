@@ -24,8 +24,85 @@ class AllisonsCatPalaceSwiftTests: XCTestCase {
         XCTAssert(newKitten.age == 5)
     }
     
-    func testKittenInitFromSnapshotWithBadData() {
-        let snapShot = testableSnapShot()
+    func testKittenInitFromSnapshotWithNoName() {
+        let snapShot = testableSnapShot(key: "five", value: [])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithValidName() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "something"])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithValidCuteness() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "", "cutenesslevel": ""])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithValidAbout() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "", "cutenesslevel": "", "about": ""])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithValidGreeting() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "", "cutenesslevel": "", "about": "", "greeting": ""])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithValidPicture() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "", "cutenesslevel": "", "about": "", "greeting": "", "picture": ""])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTAssert(true)
+            return
+        }
+        XCTFail()
+    }
+    
+    func testKittenInitFromSnapshotWithAllValidFields() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": "", "cutenesslevel": "", "about": "", "greeting": "", "picture": "", "age": ""])
+        do {
+            try _ = Kitten.init(snapshot: snapShot)
+        } catch {
+            XCTFail()
+            return
+        }
+        XCTAssert(true)
+    }
+    
+    func testKittenInitFromSnapshotWithNilName() {
+        let snapShot = testableSnapShot(key: "five", value: ["name": ""])
         do {
             try _ = Kitten.init(snapshot: snapShot)
         } catch {
@@ -40,22 +117,29 @@ class AllisonsCatPalaceSwiftTests: XCTestCase {
             "name": "TestCat",
             "about": "About TestCat",
             "greeting": "Hello TestCat",
+            "picture": "www.com",
             "age": 5,
-            "cutenessLevel": 10
+            "cutenesslevel": 10
         ]
         return fakeData
     }
 }
 
-class testableSnapShot: FDataSnapshot {
-    override var key: String {
-        get {
-            return super.key ?? "five"
-        }
+class testableSnapShot: SnapShot {
+    var value: AnyObject! = "badValue"
+    var key: String! = "five"
+    var ref: Firebase! = Firebase()
+    
+    init(key: String, value: AnyObject) {
+        self.key = key
+        self.value = value
     }
-    override var value: AnyObject {
-        get {
-            return "badValue"
+    
+    func hasChild(childPathString: String!) -> Bool {
+        if self.value[childPathString] != nil {
+            return true
+        } else {
+            return false
         }
     }
 }

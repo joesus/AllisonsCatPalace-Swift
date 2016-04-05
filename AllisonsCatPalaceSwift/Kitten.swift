@@ -36,25 +36,46 @@ struct Kitten {
         self.ref = nil
     }
     
-    init(snapshot: FDataSnapshot) throws {
+    init(snapshot: SnapShot) throws {
         key = snapshot.key
         let error = KittenError.InvalidData("No value for key in snapshot")
-        if snapshot.hasChild("name") {
-            let cutenessLevel = snapshot.value["cutenesslevel"]
-            guard let name = snapshot.value["name"] where snapshot.hasChild("name") else { throw error }
-            guard let about = snapshot.value["about"] where snapshot.hasChild("about") else { throw error }
-            guard let greeting = snapshot.value["greeting"] where snapshot.hasChild("greeting") else { throw error }
-            guard let pictureUrl = snapshot.value["picture"] where snapshot.hasChild("picture") else { throw error }
-            guard let age = snapshot.value["age"] where snapshot.hasChild("age") else { throw error }
-            self.name = name as? String
-            self.about = about as? String
-            self.greeting = greeting as? String
-            self.pictureUrl = pictureUrl as? String
-            self.age = age as? Int
-            self.cutenessLevel = cutenessLevel as? Int
-        } else {
-            throw KittenError.InvalidData("No value for required key")
+        guard let name = snapshot.value["name"] where snapshot.hasChild("name") else {
+            throw error
         }
+        guard let cutenessLevel = snapshot.value["cutenesslevel"] where snapshot.hasChild("cutenesslevel") else {
+            throw error
+        }
+        guard let about = snapshot.value["about"] where snapshot.hasChild("about") else {
+            throw error
+        }
+        guard let greeting = snapshot.value["greeting"] where snapshot.hasChild("greeting") else {
+            throw error
+        }
+        guard let pictureUrl = snapshot.value["picture"] where snapshot.hasChild("picture") else {
+            throw error
+        }
+        guard let age = snapshot.value["age"] where snapshot.hasChild("age") else {
+            throw error
+        }
+        self.name = name as? String
+        self.about = about as? String
+        self.greeting = greeting as? String
+        self.pictureUrl = pictureUrl as? String
+        self.age = age as? Int
+        self.cutenessLevel = cutenessLevel as? Int
         ref = snapshot.ref
     }
 }
+
+protocol SnapShot {
+    func hasChild(childPathString: String!) -> Bool
+    var value: AnyObject! { get }
+    var key: String! { get }
+    var ref: Firebase! { get }
+}
+
+extension FDataSnapshot: SnapShot { }
+
+
+
+

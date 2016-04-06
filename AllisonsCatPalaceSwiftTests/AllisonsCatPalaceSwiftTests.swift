@@ -125,7 +125,7 @@ class AllisonsCatPalaceSwiftTests: XCTestCase {
     }
 }
 
-class testableSnapShot: SnapShot {
+class testableSnapShot: SnapShotable {
     var value: AnyObject! = "badValue"
     var key: String! = "five"
     var ref: Firebase! = Firebase()

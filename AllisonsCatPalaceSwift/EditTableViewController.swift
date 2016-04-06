@@ -20,14 +20,16 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
     
     var kitten: Kitten?
     var kittenImage: UIImage?
+    var ref: Firebaseable? = Firebase(url: "https://catpalace.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
         
-        applyButton.enabled = false
+        applyButton.enabled = true
         aboutField.delegate = self
         nameField.delegate = self
+        ageField.delegate = self
         
         let tempImageView = UIImageView()
         downloadImagesForImageView(tempImageView, link: (kitten?.pictureUrl!)!, contentMode: .ScaleAspectFit) {
@@ -84,11 +86,9 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
             })
         } else {
             kittenData["picture"] = kitten?.pictureUrl
-            // sets the base ref. This should probably be global
-            let ref = Firebase(url: "https://catpalace.firebaseio.com/")
-            // maybe a better way to do this than autoID
-            let newKittenRef = ref.childByAutoId()
-            newKittenRef.setValue(kittenData)
+            let ref = self.ref
+            let newKittenRef = ref?.childByAutoId()
+            newKittenRef?.setValue(kittenData)
             self.navigationController?.popViewControllerAnimated(true)
         }
     }
@@ -98,7 +98,7 @@ class EditTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func addDoneButtonToNumberPad() {
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self.ageField, action: "resignFirstResponder")
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self.ageField, action: #selector(resignFirstResponder))
         let spaceItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 44))

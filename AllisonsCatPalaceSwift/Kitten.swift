@@ -22,7 +22,7 @@ struct Kitten {
     let pictureUrl: String!
     var age: Int?
     var cutenessLevel: Int?
-    var ref: Firebase?
+    var ref: Firebaseable?
     
     // Initialize from arbitrary data
     init(name: String?, about: String?, greeting: String?, age: Int?, cutenessLevel: Int?, key: String = "") {
@@ -36,27 +36,19 @@ struct Kitten {
         self.ref = nil
     }
     
-    init(snapshot: SnapShot) throws {
-        key = snapshot.key
+    init(snapshot: SnapShotable) throws {
         let error = KittenError.InvalidData("No value for key in snapshot")
-        guard let name = snapshot.value["name"] where snapshot.hasChild("name") else {
+        if let key = snapshot.key {
+            self.key = key
+        } else {
             throw error
         }
-        guard let cutenessLevel = snapshot.value["cutenesslevel"] where snapshot.hasChild("cutenesslevel") else {
-            throw error
-        }
-        guard let about = snapshot.value["about"] where snapshot.hasChild("about") else {
-            throw error
-        }
-        guard let greeting = snapshot.value["greeting"] where snapshot.hasChild("greeting") else {
-            throw error
-        }
-        guard let pictureUrl = snapshot.value["picture"] where snapshot.hasChild("picture") else {
-            throw error
-        }
-        guard let age = snapshot.value["age"] where snapshot.hasChild("age") else {
-            throw error
-        }
+        guard let name = snapshot.value["name"] where snapshot.hasChild("name") else { throw error }
+        guard let cutenessLevel = snapshot.value["cutenesslevel"] where snapshot.hasChild("cutenesslevel") else { throw error }
+        guard let about = snapshot.value["about"] where snapshot.hasChild("about") else { throw error }
+        guard let greeting = snapshot.value["greeting"] where snapshot.hasChild("greeting") else { throw error }
+        guard let pictureUrl = snapshot.value["picture"] where snapshot.hasChild("picture") else { throw error }
+        guard let age = snapshot.value["age"] where snapshot.hasChild("age") else { throw error }
         self.name = name as? String
         self.about = about as? String
         self.greeting = greeting as? String
@@ -66,16 +58,3 @@ struct Kitten {
         ref = snapshot.ref
     }
 }
-
-protocol SnapShot {
-    func hasChild(childPathString: String!) -> Bool
-    var value: AnyObject! { get }
-    var key: String! { get }
-    var ref: Firebase! { get }
-}
-
-extension FDataSnapshot: SnapShot { }
-
-
-
-

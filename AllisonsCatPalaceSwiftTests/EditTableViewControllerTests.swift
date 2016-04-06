@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import AllisonsCatPalaceSwift
+@testable import Firebase
 
 class EditTableViewControllerTests: XCTestCase {
     private var editTableVC = testEditTableVC
@@ -41,7 +42,7 @@ class EditTableViewControllerTests: XCTestCase {
     
     func testDownloadImagesForImageViewWithGoodURL() {
         let expectation = expectationWithDescription("Image download completed")
-        let goodKitten = Kitten(name: "with good url", pictureUrl: "http://placekitten.com/300/300")
+        let goodKitten = Kitten(name: "with good url", pictureUrl: "http://placekitten.com/300/300", ref: nil)
         editTableVC.kitten = goodKitten
         XCTAssertNil(self.editTableVC.imageView.image)
         editTableVC.downloadImagesForImageView(editTableVC.imageView, link: editTableVC.kitten!.pictureUrl!, contentMode: .ScaleAspectFill) {
@@ -55,7 +56,7 @@ class EditTableViewControllerTests: XCTestCase {
     }
 
     func testDownloadImagesForImageViewWithNonUrl() {
-        let badKitten = Kitten(name: "with bad url", pictureUrl: "Not a Url")
+        let badKitten = Kitten(name: "with bad url", pictureUrl: "Not a Url", ref: nil)
         editTableVC.kitten = badKitten
         editTableVC.downloadImagesForImageView(editTableVC.imageView, link: editTableVC.kitten!.pictureUrl!, contentMode: .ScaleAspectFill) {
             // Ensures the completion block was not invoked with bad url
@@ -64,7 +65,7 @@ class EditTableViewControllerTests: XCTestCase {
     }
     
     func testDownloadImagesForImageViewWithInvalidUrl() {
-        let badKitten = Kitten(name: "with no image at url", pictureUrl: "google.com")
+        let badKitten = Kitten(name: "with no image at url", pictureUrl: "google.com", ref: nil)
         editTableVC.kitten = badKitten
         editTableVC.downloadImagesForImageView(editTableVC.imageView, link: editTableVC.kitten!.pictureUrl!, contentMode: .ScaleAspectFill) {
             // Ensures the completion block was not invoked with invalid url
@@ -93,13 +94,13 @@ class EditTableViewControllerTests: XCTestCase {
     }
     
     func testTextFieldShouldChangeCharactersInRangeWithValidReplacementString() {
-        XCTAssertFalse(editTableVC.applyButton.enabled)
+        XCTAssertTrue(editTableVC.applyButton.enabled)
         editTableVC.textField(editTableVC.ageField, shouldChangeCharactersInRange: NSRange(), replacementString: "5")
         XCTAssertTrue(editTableVC.applyButton.enabled)
     }
     
     func testTextFieldShouldChangeCharactersInRangeWithInvalidReplacementString() {
-        XCTAssertFalse(editTableVC.applyButton.enabled)
+        XCTAssertTrue(editTableVC.applyButton.enabled)
         editTableVC.textField(editTableVC.ageField, shouldChangeCharactersInRange: NSRange(), replacementString: "five")
         XCTAssertFalse(editTableVC.applyButton.enabled)
     }
@@ -116,19 +117,84 @@ class EditTableViewControllerTests: XCTestCase {
         
         editTableVC.cancelChanges(UIButton())
     }
+    
+    func testApplyChangesWithErrorCallsUpdateChildValues() {
+        let kitten = Kitten(name: "", pictureUrl: "", ref: MockFirebase(withError: true))
+        editTableVC.kitten = kitten
+        editTableVC.applyChanges(UIButton())
+        let ref = kitten.ref as! MockFirebase
+        XCTAssertNotNil(ref.params)
+    }
+    
+    func testApplyChangesWithoutErrorCallsUpdateChildValues() {
+        let kitten = Kitten(name: "", pictureUrl: "", ref: MockFirebase(withError: false))
+        editTableVC.kitten = kitten
+        editTableVC.applyChanges(UIButton())
+        let ref = kitten.ref as! MockFirebase
+        XCTAssertNotNil(ref.params)
+    }
+    
+    func testApplyChangesWithoutKittenRef() {
+        editTableVC.ref = MockFirebase(withError: false)
+        editTableVC.applyChanges(UIButton())
+        let ref = editTableVC.ref as! MockFirebase
+        XCTAssertEqual(ref.childByAutoIdCount, 1)
+    }
 }
 
 extension Kitten {
     
-    init(name: String?, pictureUrl: String) {
+    init(name: String?, pictureUrl: String, ref: Firebaseable?) {
         self.name = name
         self.key = ""
         self.about = ""
         self.greeting = ""
         self.age = 1
         self.cutenessLevel = 1
-        self.ref = nil
+        self.ref = ref
         self.pictureUrl = pictureUrl
+    }
+}
+
+class MockFirebase: Firebaseable {
+    var params: [NSObject : AnyObject]?
+    var childByAutoIdCount: Int = 0
+    var setValueCount: Int = 0
+    var eventObservedCount: Int = 0
+    var error: Bool
+    
+    init(withError: Bool) {
+        self.error = withError
+    }
+    
+    func updateChildValues(values: [NSObject : AnyObject]!) { }
+    
+    func updateChildValues(values: [NSObject : AnyObject]!, withCompletionBlock block: ((NSError!, Firebase!) -> Void)!) {
+        var error: NSError?
+        self.params = values
+        if self.error {
+            error = NSError(domain: "error", code: 111, userInfo: nil)
+        }
+        let firebase = Firebase()
+        block?(error, firebase)
+    }
+    
+    func childByAutoId() -> Firebase! {
+        self.childByAutoIdCount += 1
+        return Firebase()
+    }
+    
+    func removeValue() {
+    }
+    
+    func setValue(value: AnyObject!) {
+        self.setValueCount += 1
+    }
+    
+    func observeSingleEventOfType(eventType: FEventType, withBlock block: ((FDataSnapshot!) -> Void)!) {
+        self.eventObservedCount += 1
+        let snapshot = FDataSnapshot()
+        block?(snapshot)
     }
 }
 

@@ -108,6 +108,13 @@ class DetailViewControllerTests: XCTestCase {
             XCTAssertNotNil(self.detailVC.kitten)
         }
     }
+    
+    func testLoadKittenDataCallsObserveSingleEventOfType() {
+        detailVC.ref = MockFirebase(withError: false)
+        detailVC.loadKittenData() {}
+        let ref = detailVC.ref as! MockFirebase
+        XCTAssertEqual(ref.eventObservedCount, 1)
+    }
 }
 
 private class MasterViewControllerMock: MasterViewController {

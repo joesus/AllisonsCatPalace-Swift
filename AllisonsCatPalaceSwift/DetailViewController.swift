@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
     var kittenImage: UIImage?
     var editKittenCompletion: (() -> UIViewController)?
     var deleteKittenCompletion: ((Kitten) -> Void)?
-    var ref: Firebase = Firebase(url: "https://catpalace.firebaseio.com/")
+    var ref: Firebaseable = Firebase(url: "https://catpalace.firebaseio.com/")
     var previewActions: [UIPreviewAction]?
     
     override func viewDidLoad() {
@@ -56,10 +56,9 @@ class DetailViewController: UIViewController {
     }
     
     func loadKittenData(completionHandler: (()->())?) {
-        print("load kitten hit")
         ref.observeSingleEventOfType(.ChildChanged, withBlock: { snapshot in
             do {
-                self.kitten = try Kitten(snapshot: snapshot as! FDataSnapshot)
+                self.kitten = try Kitten(snapshot: snapshot as SnapShotable)
             } catch let error {
                 print(error)
             }

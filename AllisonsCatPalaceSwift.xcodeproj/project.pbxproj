@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2745B2DB1CA9A3EA005E7252 /* MasterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2745B2DA1CA9A3EA005E7252 /* MasterViewControllerTests.swift */; };
+		27491D4C1CB5A50B001F5FC6 /* SnapShotable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27491D4B1CB5A50B001F5FC6 /* SnapShotable.swift */; };
+		27491D4E1CB5A589001F5FC6 /* Firebaseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27491D4D1CB5A589001F5FC6 /* Firebaseable.swift */; };
 		274AAED11C3D8FDB00BC63F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274AAED01C3D8FDB00BC63F2 /* Main.storyboard */; };
 		277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D8E1C3B1BC10091759E /* AppDelegate.swift */; };
 		277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277B7D901C3B1BC10091759E /* MasterViewController.swift */; };
@@ -45,6 +47,8 @@
 /* Begin PBXFileReference section */
 		04BC48C3F3E5054932009BAA /* Pods-AllisonsCatPalaceSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AllisonsCatPalaceSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AllisonsCatPalaceSwift/Pods-AllisonsCatPalaceSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		2745B2DA1CA9A3EA005E7252 /* MasterViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewControllerTests.swift; sourceTree = "<group>"; };
+		27491D4B1CB5A50B001F5FC6 /* SnapShotable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapShotable.swift; sourceTree = "<group>"; };
+		27491D4D1CB5A589001F5FC6 /* Firebaseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebaseable.swift; sourceTree = "<group>"; };
 		274AAED01C3D8FDB00BC63F2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		277B7D8B1C3B1BC10091759E /* AllisonsCatPalaceSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllisonsCatPalaceSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		277B7D8E1C3B1BC10091759E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27491D491CB5A4DF001F5FC6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				27491D4B1CB5A50B001F5FC6 /* SnapShotable.swift */,
+				27491D4D1CB5A589001F5FC6 /* Firebaseable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		27491D4A1CB5A4EA001F5FC6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				277B7D901C3B1BC10091759E /* MasterViewController.swift */,
+				277B7D921C3B1BC10091759E /* DetailViewController.swift */,
+				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		27491D4F1CB5A5F8001F5FC6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27A0A15C1C3C850300AE878F /* Kitten.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		27491D501CB5A605001F5FC6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				27ABEC971C46A69100C0F557 /* RangeExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		27491D511CB5A613001F5FC6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */,
+				274AAED01C3D8FDB00BC63F2 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		277B7D821C3B1BC10091759E = {
 			isa = PBXGroup;
 			children = (
@@ -119,16 +167,14 @@
 		277B7D8D1C3B1BC10091759E /* AllisonsCatPalaceSwift */ = {
 			isa = PBXGroup;
 			children = (
+				27491D511CB5A613001F5FC6 /* Storyboards */,
+				27491D501CB5A605001F5FC6 /* Extensions */,
+				27491D4F1CB5A5F8001F5FC6 /* Models */,
+				27491D4A1CB5A4EA001F5FC6 /* ViewControllers */,
+				27491D491CB5A4DF001F5FC6 /* Protocols */,
 				277B7D8E1C3B1BC10091759E /* AppDelegate.swift */,
-				277B7D901C3B1BC10091759E /* MasterViewController.swift */,
-				277B7D921C3B1BC10091759E /* DetailViewController.swift */,
-				27A0A1601C3D8BFE00AE878F /* EditTableViewController.swift */,
 				277B7D971C3B1BC10091759E /* Assets.xcassets */,
-				277B7D991C3B1BC10091759E /* LaunchScreen.storyboard */,
 				277B7D9C1C3B1BC10091759E /* Info.plist */,
-				27A0A15C1C3C850300AE878F /* Kitten.swift */,
-				274AAED01C3D8FDB00BC63F2 /* Main.storyboard */,
-				27ABEC971C46A69100C0F557 /* RangeExtension.swift */,
 			);
 			path = AllisonsCatPalaceSwift;
 			sourceTree = "<group>";
@@ -357,9 +403,11 @@
 			files = (
 				27A0A1611C3D8BFE00AE878F /* EditTableViewController.swift in Sources */,
 				277B7D931C3B1BC10091759E /* DetailViewController.swift in Sources */,
+				27491D4E1CB5A589001F5FC6 /* Firebaseable.swift in Sources */,
 				277B7D911C3B1BC10091759E /* MasterViewController.swift in Sources */,
 				27ABEC981C46A69100C0F557 /* RangeExtension.swift in Sources */,
 				277B7D8F1C3B1BC10091759E /* AppDelegate.swift in Sources */,
+				27491D4C1CB5A50B001F5FC6 /* SnapShotable.swift in Sources */,
 				27A0A15D1C3C850300AE878F /* Kitten.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
